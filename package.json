@@ -1,13 +1,13 @@
 {
   "name": "universal-react-example",
   "version": "1.0.0",
-  "description": "",
+  "description": "Universal react example",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start":"babel-node server.js"
   },
-  "keywords": [],
+  "keywords": ["react","react-router","ejs","express","hsitory","react-dom","babel","webpack"],
   "author": "",
   "license": "ISC",
   "dependencies": {
