@@ -1,12 +1,22 @@
 {
   "name": "universal-react-example",
   "version": "1.0.0",
-  "description": "",
+  "description": "Universal react example",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node server.js"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "react-router",
+    "ejs",
+    "express",
+    "history",
+    "react-dom",
+    "babel",
+    "webpack"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -23,8 +33,6 @@
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
-    "babelify": "^7.2.0",
-    "browserify": "^12.0.1",
     "webpack": "^1.12.9"
   }
 }
