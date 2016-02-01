@@ -20,12 +20,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async-props": "^0.2.2",
+    "babel-plugin-transform-class-properties": "^6.4.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "history": "^1.13.1",
+    "history": "^1.17.0",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-router": "^1.0.0"
+    "react-router": "^1.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.2.0",

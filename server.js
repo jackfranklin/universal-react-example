@@ -1,9 +1,11 @@
+import 'isomorphic-fetch';
 import express from 'express';
 import http from 'http';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RoutingContext } from 'react-router';
+import AsyncProps, { loadPropsOnServer } from 'async-props';
 
 import { routes } from './routes';
 
@@ -20,9 +22,10 @@ app.get('*', (req, res) => {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (props) {
-      const markup = renderToString(<RoutingContext {...props} />);
-
-      res.render('index', { markup })
+      loadPropsOnServer(props, (err, asyncProps, scriptTag) => {
+        const markup = renderToString(<AsyncProps {...props} {...asyncProps} />);
+        res.render('index', { markup, scriptTag })
+      });
 
     } else {
       res.sendStatus(404);
