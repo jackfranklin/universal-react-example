@@ -1,5 +1,4 @@
 import express from 'express';
-import http from 'http';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -30,9 +29,10 @@ app.get('*', (req, res) => {
   });
 });
 
-const server = http.createServer(app);
-
-server.listen(3003);
-server.on('listening', () => {
-  console.log('Listening on 3003');
+app.listen(3003, 'localhost', function(err) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log('Listening at http://localhost:3003');
 });
