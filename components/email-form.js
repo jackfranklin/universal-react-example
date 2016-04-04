@@ -15,7 +15,7 @@ export default class EmailForm extends React.Component {
     return this.state.success === true;
   }
 
-  renderErrors() {
+  renderErrorsList() {
     return this.state.errors.map((err) => {
       return (
         <li className="form-error" key={err}>
@@ -46,17 +46,24 @@ export default class EmailForm extends React.Component {
     )
   }
 
+  renderErrors() {
+    if (this.state.errors && this.state.errors.length > 0) {
+      return (
+        <div>
+          <h5>There were errors submitting this form.</h5>
+          <ul>{this.renderErrorsList()}</ul>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return (
       <div>
-        { this.state.errors && this.state.errors.length > 0 &&
-          <div>
-            <h5>There were errors submitting this form.</h5>
-            <ul>{this.renderErrors()}</ul>
-          </div>
-        }
-        { !this.formSubmittedSuccessfully() && this.renderForm() }
-        { this.formSubmittedSuccessfully() && this.renderSuccess() }
+        { this.renderErrors() }
+        { this.formSubmittedSuccessfully() ? this.renderSuccess() : this.renderForm() }
       </div>
     )
   }
