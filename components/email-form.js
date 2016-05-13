@@ -40,6 +40,8 @@ export default class EmailForm extends React.Component {
     const emailValue = this.state.value;
     // note how this is the same validator we ran on the server!
     const result = validateEmailForm(emailValue);
+    // at this point you could POST to an endpoint to save
+    // this to the database, or do whatever you need to
     this.setState({
       errors: result.errors,
       success: result.valid
