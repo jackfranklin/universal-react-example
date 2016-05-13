@@ -3,12 +3,17 @@ import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
+import bodyParser from 'body-parser';
 
 import { routes } from './routes';
+
+import validateEmailForm from './components/validate-email-form';
 
 const app = express();
 
 app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
@@ -36,7 +41,22 @@ app.get('*', (req, res) => {
     }
   });
 });
-app.listen(3003, 'localhost', function(err) {
+
+app.post('/submit-email-form', (req, res) => {
+  const { email } = req.body;
+  const result = validateEmailForm(email);
+
+  if (result.valid === true) {
+    // here you would save this to a database, or whatever you want
+    // db.addEmail(email)
+
+    res.redirect(`/about?success=true&value=${email}`);
+  } else {
+    res.redirect(`/about?errors=${result.errors.join(',')}&success=false&value=${email}`);
+  }
+});
+
+app.listen(3003, 'localhost', (err) => {
   if (err) {
     console.log(err);
     return;
